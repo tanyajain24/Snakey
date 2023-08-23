@@ -1,0 +1,452 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 75%;
+  overflow: hidden;
+}
+
+body {
+  text-align: center;
+  padding: 3rem 0;
+  background-image: radial-gradient(rgba(52, 86, 119, 0.8) 10%, rgba(1, 17, 49, 0.9)), url(images/forest.png);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  overflow-y: hidden;
+  overscroll-behavior: none;
+}
+
+.heading__text {
+  font-size: 3rem;
+  font-family: 'Merienda', cursive;
+  color: #57bcd3;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 7px rgba(0, 0, 0, 0.7);
+}
+
+.game {
+  margin: 1rem;
+  position: relative;
+}
+.score__text {
+  font-size: 2rem;
+  font-family: 'Nunito Sans', sans-serif;
+  color: #81e4fa;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 7px rgba(0, 0, 0, 0.7);
+}
+#game-canvas {
+  border-style: solid;
+  border-radius: 3px;
+  border-width: 5px;
+  border-color: #142850;
+  transition: all ease;
+  position: relative;
+}
+
+.game-end {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.game-over {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 5rem;
+  color: rgb(182, 255, 255);
+  text-shadow: 0px 0px 100px#000000;
+  -webkit-text-stroke: 0.17rem rgb(0, 24, 24);
+}
+
+.play-again {
+  background-color: rgb(10, 173, 173);
+  font-family: 'Nunito Sans', sans-serif;
+  border-radius: 5px;
+  color: rgb(181, 241, 241);
+  display: inline-block;
+  padding: 1rem;
+  font-size: 3rem;
+  margin-top: 2rem;
+  box-shadow: 0 0 10px 5px rgb(0, 99, 99);
+  transition: all .4s;
+}
+
+.play-again:hover {
+  background-color: #81e4fa;
+  color: white;
+  cursor: pointer;
+}
+
+.play-buttons {
+  position: fixed;
+  right: 5%;
+  top: 50%;
+  width: 13.3rem;
+  height: 13.3rem;
+}
+
+/*pause button*/
+
+.pause-play {
+  width: 4.17rem;
+  height: 4.17rem;
+  background-color: rgb(0, 99, 99);
+  margin: auto;
+  border-radius: 5px;
+  position: relative;
+  text-align: center;
+  color: #81e4fa;
+}
+.first-bar, .second-bar {
+  width: 15%;
+  height: 60%;
+  background-color: #81e4fa;
+  border-radius: 100px;
+  position: absolute;
+  top: 20%;
+  transition: all .5s;
+}
+
+.first-bar {
+  left: 27%;
+}
+
+.second-bar {
+  right: 27%;
+}
+
+#check-play {
+  display: none;
+}
+
+.fa-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .5s;
+}
+
+#check-play:checked ~ .pause-play .first-bar {
+  width: 30%;
+  clip-path: polygon(0 0, 10% 0, 100% 25%, 100% 75%, 10% 100%, 0 100%);
+}
+
+#check-play:checked ~ .pause-play .second-bar {
+  transform-origin: left;
+  transform: scaleX(2);
+  clip-path: polygon(0 20%, 100% 50%, 100% 50%, 0 75%);
+}
+
+#check-play:checked ~ .pause-play .fa-play {
+  opacity: 1;
+}
+
+/* remaining buttons */
+.play-button {
+  background-color: rgb(0, 99, 99);
+  color: #81e4fa;
+  border-radius: 5px;
+  width: 4.17rem;
+  height: 4.17rem;
+  position: absolute;
+  padding: .58rem;
+  transition: all .4s;
+  cursor: pointer;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+}
+
+.play-left, .play-pause, .play-right {
+  display: inline-block;
+}
+
+.play-top {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.play-left {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.play-pause {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+}
+
+.play-right {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.play-bottom {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.play-button:hover {
+  background-color: rgb(29, 146, 146);
+}
+
+.pause-play {
+  transition: all .4s;
+}
+
+.pause-play * {
+  pointer-events: none;
+}
+
+.fas {
+  pointer-events: none;
+}
+
+.pause-play:hover {
+  background-color: rgb(29, 146, 146);
+}
+
+.speed-buttons {
+  position: fixed;
+  right: 7%;
+  top: 30%;
+}
+
+.speed-up, .speed-down {
+  position: static;
+  display: inline-block;
+}
+
+
+/*on-off slider maze*/
+.checkbox-maze {
+  position: relative;
+  display: inline-block;
+}
+.checkbox-maze__label {
+  width: 7.5rem;
+  height: 3.5rem;
+  background: rgb(137, 192, 199);
+  position: relative;
+  display: inline-block;
+  border-radius: 3.83rem;
+  transition: 0.4s;
+  box-shadow: inset 0 0 5px 2px black;
+}
+.checkbox-maze__label:after {
+  content: '';
+  box-sizing: border-box;
+  /* display: block; */
+  position: absolute;
+  width: 4.17rem;
+  height: 4.17rem;
+  border-radius: 100%;
+  left: 0;
+  top: -5px;
+  z-index: 2;
+  background: rgb(191, 255, 242);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+  transition: 0.4s;
+}
+.checkbox-maze__input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox-maze__input:checked + .checkbox-maze__label {
+  background: #376fcb;
+}
+
+.checkbox-maze__input:hover + .checkbox-maze__label:after {
+  box-shadow: 0 0 15px #000;
+}
+
+.checkbox-maze__input:checked + .checkbox-maze__label:after {
+  left: 3.33rem;
+  background: #4285F4;
+}
+
+.maze-toggle {
+  position: absolute;
+  left: 10%;
+  top: 50%;
+}
+
+.auto-toggle {
+  top: 70%;
+}
+
+.stop-button {
+  width: auto;
+  height: 4rem;
+  padding: 0.5rem;
+  right: 8%;
+  bottom: 15%;
+}
+
+.stop-button .score__text {
+  pointer-events: none;
+}
+
+.instruction-button {
+  width: 15rem;
+  left: 15%;
+  transform: translateX(-50%);
+  top: 35%;
+}
+
+.popup-check {
+  display: none;
+}
+
+.instructions {
+  max-width: 700px;
+  width: 90%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.4);
+  background-color: rgb(7, 74, 100);
+  color: aliceblue;
+  font-family: 'Roboto Slab', sans-serif;
+  font-size: 1.85rem;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 0 2000px 1000px rgba(0, 0, 0, 0.7), inset 0 0 7px 2px #81e4fa;
+  opacity: 0;
+  z-index: 10;
+  visibility: hidden;
+  transition: all 0.4s;
+}
+
+#check-popup:checked ~ .instructions {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.instructions__list {
+  list-style-position: inside;
+  text-align: left;
+}
+
+.instructions__item {
+  margin: 1rem 0;
+}
+
+.instructions .fas {
+  pointer-events: all;
+}
+
+.fa-times {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  cursor: pointer;
+  transition: all .6s;
+}
+
+.fa-times:hover {
+  color: #81e4fa;
+}
+
+@media(max-width: 1200px) {
+  .speed-buttons {
+    top: unset;
+    right: unset;
+    bottom: 5%;
+    left: 20%;
+  }
+
+  .maze-toggle {
+    top: unset;
+    right: unset;
+    bottom: 4.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .play-buttons {
+    top: unset;
+    right: unset;
+    bottom: 10%;
+    right: 20%;
+  }
+
+  .stop-button {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0.5%;
+    width: 6rem;
+  }
+
+  .auto-toggle {
+    bottom: 12.5rem !important;
+  }
+
+  .stop-button {
+    width: 5rem;
+    height: 3rem;
+    font-size: 2px !important;
+    padding: 0.1rem;
+  }
+  
+  .instruction-button {
+    top: unset;
+    bottom: 15%;
+    left: 20%;
+  }
+}
+
+@media(max-width: 900px) {
+  .speed-buttons {
+    bottom: 10%;
+    left: 20%;
+  }
+
+  .maze-toggle {
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .play-buttons {
+    bottom: 5%;
+    right: 20%;
+  }
+}
+
+@media(max-width: 600px) {
+  html {
+    font-size: 45%;
+  }
+  .speed-buttons {
+    bottom: 5%;
+    left: 5%;
+  }
+
+  .play-buttons {
+    bottom: 2%;
+    right: 5%;
+  }
+
+}

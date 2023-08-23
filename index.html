@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Nunito+Sans:wght@400;700;900&family=Roboto+Slab:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="style.css" />
+    <title>Snakey Game</title>
+  </head>
+  <body>
+    <div class="heading">
+      <h1 class="heading__text">
+        Snakey
+      </h1>
+    </div>
+
+    <div class="score">
+      <h2 class="score__text">
+        Your Score: <span class="score--value"></span>
+      </h2>
+    </div>
+
+    <div class="game">
+      <canvas id="game-canvas" width="600" height="500"> </canvas>
+      <div class="game-end">
+        <h1 class="game-over">GAME OVER</h1>
+        <p class="play-again">
+          Play again
+        </p>
+      </div>
+    </div>
+
+    <div class="play-buttons">
+      <div class="play-button play-top">
+        <i class="fas fa-arrow-up fa-3x"></i>
+      </div>
+      <div class="play-button play-left">
+        <i class="fas fa-arrow-left fa-3x"></i>
+      </div>
+      <div class="play-pause">
+        <label for="check-play" class="checkbox-label">
+          <input
+            type="checkbox"
+            id="check-play"
+            class="checkbox-input__pause"
+          />
+          <div class="pause-play">
+            <span class="first-bar"></span>
+            <span class="second-bar"></span>
+            <i class="fas fa-play fa-3x"></i>
+          </div>
+        </label>
+      </div>
+      <div class="play-button play-right">
+        <i class="fas fa-arrow-right fa-3x"></i>
+      </div>
+      <div class="play-button play-bottom">
+        <i class="fas fa-arrow-down fa-3x"></i>
+      </div>
+    </div>
+
+    <div class="speed-buttons">
+      <div class="speed">
+        <h2 class="score__text">Speed: <span class="speed-display">1</span></h2>
+      </div>
+      <div class="speed-up play-button">
+        <i class="fas fa-plus fa-3x"></i>
+      </div>
+      <div class="speed-down play-button">
+        <i class="fas fa-minus fa-3x"></i>
+      </div>
+    </div>
+
+    <div class="maze-toggle">
+      <div class="maze-text">
+        <h2 class="score__text">Maze Mode</h2>
+      </div>
+      <div class="checkbox-maze">
+        <input
+          class="checkbox-maze__input"
+          type="checkbox"
+          id="checkbox-maze"
+        />
+        <label class="checkbox-maze__label" for="checkbox-maze"></label>
+      </div>
+    </div>
+
+    <div class="maze-toggle auto-toggle"> 
+      <div class="auto-text">
+        <h2 class="score__text">Auto Mode</h2>
+      </div>
+      <div class="checkbox-maze">
+        <input
+          class="checkbox-maze__input"
+          type="checkbox"
+          id="checkbox-auto"
+        />
+        <label class="checkbox-maze__label" for="checkbox-maze"></label>
+      </div>
+    </div>
+
+    <div class="play-button stop-button">
+      <h2 class="score__text">Stop</h2>
+    </div>
+
+    <input type="checkbox" class="popup-check" id="check-popup">
+    <label for="check-popup" class="popup-label">
+      <div class="play-button instruction-button">
+        <h2 class="score__text">Instructions <i class="fas fa-external-link-alt"></i></h2>
+      </div>  
+    </label>
+    
+    <div class="instructions">
+      <i class="fas fa-times"></i>
+      <ul class="instructions__list">
+        <li class="instructions__item">
+          Use the arrow buttons provided, arrow keys, WASD, HJKL, Numpad-8426 or swipe to
+          control the movement
+        </li>
+        <li class="instructions__item">
+          Use the pause/play button provided or the spacebar to pause/play
+        </li>
+        <li class="instructions__item">
+          The speed of the game can be modified using the buttons given or + and
+          - keys on keyboard (not the numpad ones)
+        </li>
+        <li class="instructions__item">
+          The snake dies if it bites its own tail or if in the maze mode it
+          crashes into a wall
+        </li>
+        <li class="instructions__item">
+          Press any of the control buttons or keys to start in that direction
+        </li>
+        <li class="instructions__item">
+          Press the stop button to end the game anytime
+        </li>
+        <li class="instructions__item">
+          The goal is to eat as many apples as possible
+        </li>
+        <li class="instructions__item">
+          See a demo of the game in the auto mode
+        </li>
+      </ul>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
